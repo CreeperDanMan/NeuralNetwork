@@ -18,14 +18,15 @@ int main() { //int argc, char* argv[]
 
 	srand(time(NULL));
 	
+	printf("Le réseau utilisera le dataset XOR intégré\n");
 	setDatasetXOR(&data);
 
 	initFromDataset(&network, &data);
 	printf("Nombre de paramètres du réseau : %u\n",getParameterNumber(&network));
-	printf("neurons = %u\n", network.numberOfNeurons);
-	printf("weights = %u\n", network.numberOfWeight);
+	printf("Nombre de neurones : %u\n", network.numberOfNeurons);
+	printf("Nombre de poids : %u\n", network.numberOfWeight);
 
-	printf("La loss est de : %f\n",loss(&network, &data));
+	printf("Loss : %f\n",loss(&network, &data));
 
 	// == Libération de la mémoire ==
 	freeNetworkAllocation(&network);

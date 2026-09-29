@@ -21,15 +21,16 @@ void neuronActivity(struct NeuralNetwork *network, const unsigned int layerNumbe
 
 
 void feedForward(struct NeuralNetwork *network){
-	// Traitement de la couche 0 (input Layers)
 
+	// Traitement de la couche 0 (input Layers)
 	for (unsigned int i = network ->layerOffset[1]; i < network -> numberOfNeurons; i++) {
 	    	network -> output[i] = 0.0f;
 	}
 
 
-	for (unsigned int i = 0; i<network -> layerSize[0]; i++) { 	// L'input Layer reçois les données (passer par un array supplémentaire gache de la mémoire, mais facilite la conceptualisation de la chose)
-		network -> output[i] = network -> inputVector[i];		// MàJ probable en effaçant probaVecteur quand le réseau sera fonctionnel
+	// Envoi des données d'entrées au réseau
+	for (unsigned int i = 0; i<network -> layerSize[0]; i++) {
+		network -> output[i] = network -> inputVector[i];
 	}
 
 	for (unsigned int i = 1; i<network -> numLayers; i++) {

@@ -19,12 +19,7 @@ void freeDatasetMemoryAllocation(struct dataset* networkDataset) {
     free(networkDataset -> outputDataset);
 }
 
-/*
- * 0 + 0 = 0
- * 0 + 1 = 1
- * 1 + 0 = 1
- * 1 + 1 = 0
-*/
+
 void setDatasetXOR(struct dataset* XORDataset) {
     XORDataset -> inputOffset = 2;
     XORDataset -> outputOffset = 1;
