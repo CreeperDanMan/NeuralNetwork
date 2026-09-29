@@ -18,7 +18,7 @@ float loss(struct NeuralNetwork* network, struct dataset* data) {
         }
 
     }
-    return lossResult;//(float)data->datasetSize;
+    return lossResult/(float)data->datasetSize;
 }
 
 float lossUnique(struct NeuralNetwork* network, struct dataset* data, unsigned int offset) {
@@ -28,6 +28,8 @@ float lossUnique(struct NeuralNetwork* network, struct dataset* data, unsigned i
     }
     float lossResult = 0.0f;
     unsigned int sampleOffset = offset * data->outputOffset;
+    copyDatasetInput(network, data, offset);
+    feedForward(network);
     
     for (unsigned int i = 0; i<data->outputOffset; i++) {
         lossResult = pow((data->outputDataset[sampleOffset+i]-network->probaVector[i]),2);

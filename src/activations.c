@@ -1,4 +1,5 @@
 #include "activations.h"
+#include <math.h>
 
 
 float sigmoid(const float x){
@@ -25,16 +26,20 @@ float leakyReLU(const float a, const float x) {
 	return x>=0.0f ? x : a*x;
 }
 
-float eLU(const float a, const float x) {
+float leakyReLUDerivative(const float a, const float x) {
+	return x>=0.0f ? x : a;
+}
+
+float ELu(const float a, const float x) {
 	return x>=0.0f ? x : a*(expf(x)-1);
 }
 
-float eLUDerivative(const float a, const float x) {
-	return x>=0.0f ? a*expf(x) : 1;
+float ELuDerivative(const float a, const float x) {
+	return x>=0.0f ? 1.0f : a*expf(x);
 }
 
 float SiLU(const float x) {
-	return x*(1.0f/(1+expf(-x)));
+	return x*(1.0f/(1.0f+expf(-x)));
 }
 
 float SiLUDerivative(const float x) {

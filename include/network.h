@@ -16,36 +16,36 @@
 #define HIDDEN_LAYERS_SIZE 32
 
 
-// == DATASTRUCTURE DU RÉSEAU DE NEURONES ==
+/**
+ * @struct NeuralNetwork
+ * @brief Représente le réseau de neurones (ici un MultiLayer Perceptron / MLP)
+ * 
+ * Cette structure contiens les poids, biais et sorties du réseaux de neurones applatis en une dimension unique.
+ * Chaque Neurone est accessible via un Offset par Layer, Chaque poids est accessible via un Offset par neurone. 
+ * 
+ * Les entrées et sorties du réseau sont différenciées de son état interne.
+ */
 
-// Fonctionnement : sigmoid_activation(SOMME(output⁻1 * poids))
-// Usage de tableaux 1D pour la linéarité + vectorisation automatique
-// Calcul de coordonnées d'un neurone : index = neuronOffset[L]+j
-// Neurone étant inférieur à layerSize
-
-// Calcul de coordonnées d'un poids (reliant un neurone i à un neurone j de la couche L
-// index = weightOffset[L] + (i*layerSize[L]) + j
-
-// LayerOffset et layerSize de même taille mais layerOffset[n+1] =  layerOffset[n]+layerSize[n]
 struct NeuralNetwork {
 
-	float *biais;  // Contiens les biens de tous les neurones
-	float *weight; // Contiens les poids de toutes les couches pour chaque neurone
-	float *output; // Contiens toutes les activations de neurones actuelles
+	float *biais;  /**< Array à une dimension contenant les biais des neurones */
+	float *weight; /**< Array à une dimension contenant les poids des neurones  */
+	float *output; /**< Array à une dimension contenant la valeur de sortie des neurones */
+	unsigned int *activationFunction; // A INITIALISAER /**< Array à une dimension attribuant une fonction d'activation par Layer */
 
-	unsigned int    numLayers; // Nombre de couches (input et output comprises)
-	unsigned int   *layerSize; // Tailles de couches (ex. 64, 128, 256, 784)
-	unsigned int   *nbWeightPerLayer; // Tableau appposant le nombre de poids par neurone POUR CHAQUE LAYER - pourrais faciliter l'implémentation future de hidden layers à taiiles variables
+	unsigned int    numLayers; /**< Variable contenant le nombre de layer du réseau */
+	unsigned int   *layerSize; /**< Array à une dimension contenant la taille de chaque layer, permettant des tailles indépendantes par layer */
+	unsigned int   *nbWeightPerLayer; /**< Array à une dimension contenant le nombre de poids par layer */
 
-	unsigned int   *layerOffset; // Sers au calcul de coordonnees du réseau (=> layerOffset[2] = 1er neurone de la 2e couche du réseau)
-	unsigned int   *weightOffset;
+	unsigned int   *layerOffset; /**< Array à une dimension contenant l'offset de chaque layer dans output et biais, chaque index représentant la coordonnée du premier neurone de la couche sélectionnée */
+	unsigned int   *weightOffset; /**< Array à une dimension contenant l'offset de chaque poids par neurone */
 
-	unsigned int    numberOfNeurons; // Data Supplémentaire au cas où
-	unsigned int    numberOfWeight;
-	unsigned int	probaVectorSize;
+	unsigned int    numberOfNeurons; /**< Variable contenant le nombre de neurones du réseau */
+	unsigned int    numberOfWeight; /**< Variable contenant le nombre de poids du réseau */
+	unsigned int	probaVectorSize; /**< Variable contenant la taille de la couche de sortie */
 
-	float *inputVector; // Permet de faciliter la forward pass ET d'éviter des réallocation couteuses par malloc
-	float *probaVector;
+	float *inputVector; /**< Array à une dimension contenant les entrées du réseau */
+	float *probaVector; /**< Array à une dimension contenant la sortie normalisée par Softmax du réseau */
 };
 
 struct dataset;
@@ -59,12 +59,13 @@ void networkMemoryInitialisation(struct NeuralNetwork *network, unsigned int inp
 void freeNetworkAllocation(struct NeuralNetwork *network);
 
 
-
 void weightOffsetInitialisation(unsigned int *weightOffset, const unsigned int *layerOffset, const unsigned int *layerSize, const unsigned int numLayers);
 
 void biaisInitialisation(float *biaisArray, const unsigned int arraySize, const float arbitraryNumber);
 
 void randomBiaisInitialisation(float * biaisArray, const unsigned int arraySize);
+
+//TODO : Déplacer l'initialisation des poids dans un autre fichier
 
 void randomWeightInitialisation(const unsigned int weightTotalNumber, float *weight);
 
