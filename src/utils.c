@@ -95,3 +95,9 @@ void copyDatasetInput(struct NeuralNetwork *network, struct dataset *data, unsig
 	memcpy(network->inputVector, data->inputDataset+data->inputOffset*offset, data->inputOffset);
 }
 
+
+void zeroInitialisation(float *array, unsigned int arraySize) {
+	for (unsigned int i = 0; i<arraySize; i++) {
+		array[i] = 0;
+	}
+}

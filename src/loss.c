@@ -1,7 +1,7 @@
 #include "loss.h"
 #include "network.h"
 #include "dataset.h"
-#include "feed-forward.h"
+#include "forward-pass.h"
 #include <math.h>
 
 float loss(struct NeuralNetwork* network, struct dataset* data) {
@@ -11,10 +11,10 @@ float loss(struct NeuralNetwork* network, struct dataset* data) {
     for (unsigned int i = 0; i<data ->datasetSize; i++) {
 
         copyDatasetInput(network, data, i);
-        feedForward(network);
+        forwardPass(network);
 
         for (unsigned int j = 0; j<data->outputOffset;j++) {
-            lossResult += pow((data->outputDataset[data->outputOffset*i+j]-network->probaVector[i]),2);
+            lossResult += pow((data->outputDataset[data->outputOffset*i+j]-network->probaVector[j]),2);
         }
 
     }
@@ -29,7 +29,7 @@ float lossUnique(struct NeuralNetwork* network, struct dataset* data, unsigned i
     float lossResult = 0.0f;
     unsigned int sampleOffset = offset * data->outputOffset;
     copyDatasetInput(network, data, offset);
-    feedForward(network);
+    forwardPass(network);
     
     for (unsigned int i = 0; i<data->outputOffset; i++) {
         lossResult = pow((data->outputDataset[sampleOffset+i]-network->probaVector[i]),2);

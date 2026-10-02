@@ -31,7 +31,7 @@ void neuronActivity(struct NeuralNetwork *network, const unsigned int layerNumbe
  * @see neuronActivity
  * 
  */
-void feedForward(struct NeuralNetwork *network);
+void forwardPass(struct NeuralNetwork *network);
 
 
 

@@ -18,6 +18,8 @@ void neuralNetworkInitialisation (struct NeuralNetwork *network, unsigned int in
 
 	// Initialisation des poids et du tableau d'offset
 
+	zeroInitialisation(network->inputVector, network->layerSize[0]);
+
 	weightOffsetInitialisation(network -> weightOffset, network -> layerOffset, network -> layerSize, network -> numLayers);
 	randomWeightInitialisation(network -> numberOfWeight, network -> weight);
 
@@ -51,7 +53,7 @@ void networkMemoryInitialisation(struct NeuralNetwork *network, unsigned int inp
 	network -> layerOffset[0] =  0;
 	network -> nbWeightPerLayer[0] = 0;
 
-	network -> inputVector = malloc(network -> layerSize[0]*sizeof(float));
+	network -> inputVector = malloc(inputLayerSize*sizeof(float));
 
 	if (network -> inputVector == NULL) {
 		fprintf(stderr, "ERREUR D'ALLOCATION, POINTEUR NULL RETOURNE"); // si un pointeur est null à partir d'ici, alors l'utilisateur l'a voulu. gestion plus robuste plus tard si un jour j'ai le temps.
@@ -72,7 +74,7 @@ void networkMemoryInitialisation(struct NeuralNetwork *network, unsigned int inp
 	network -> layerSize[network -> numLayers-1] = outputLayerSize;
 
 	network -> probaVector = malloc(network -> layerSize[network->numLayers-1]*sizeof(float));
-	network -> probaVectorSize = network -> layerSize[network->numLayers-1]; // égal à 0
+	network -> probaVectorSize = network -> layerSize[network->numLayers-1]; 
 
 	network -> layerOffset[network -> numLayers-1] = network -> layerSize[network -> numLayers-2] + network -> layerOffset[network -> numLayers-2]; // La taille du réseau ne sera jamais inférieure à 2 (entrée + sortie), donc pas de débordement de tableau ici
 	network -> nbWeightPerLayer[network -> numLayers-1] = network -> layerSize[network -> numLayers-2] * network -> layerSize[network -> numLayers-1];
@@ -150,10 +152,9 @@ void weightOffsetInitialisation(unsigned int *weightOffset, const unsigned int *
 
 	for (unsigned int i = 1; i<numLayers; i++) {
 		for (unsigned int j = 0; j<layerSize[i]; j++) {
-			weightOffset[layerOffset[i]+j] = currentOffset+i;
+			weightOffset[layerOffset[i]+j] = currentOffset;
 
 			currentOffset+=layerSize[i-1];
 		}
 	}
-	return;
 }

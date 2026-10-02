@@ -1,4 +1,4 @@
-#include <feed-forward.h>
+#include <forward-pass.h>
 #include <network.h>
 #include <activations.h>
 
@@ -20,18 +20,18 @@ void neuronActivity(struct NeuralNetwork *network, const unsigned int layerNumbe
 
 
 
-void feedForward(struct NeuralNetwork *network){
+void forwardPass(struct NeuralNetwork *network){
+
+		// Envoi des données d'entrées au réseau
+	for (unsigned int i = 0; i<network -> layerSize[0]; i++) {
+		network -> output[i] = network -> inputVector[i];
+	}
 
 	// Traitement de la couche 0 (input Layers)
 	for (unsigned int i = network ->layerOffset[1]; i < network -> numberOfNeurons; i++) {
 	    	network -> output[i] = 0.0f;
 	}
 
-
-	// Envoi des données d'entrées au réseau
-	for (unsigned int i = 0; i<network -> layerSize[0]; i++) {
-		network -> output[i] = network -> inputVector[i];
-	}
 
 	for (unsigned int i = 1; i<network -> numLayers; i++) {
 		for (unsigned int j = network -> layerOffset[i]; j<network->layerOffset[i]+network->layerSize[i]; j++) {

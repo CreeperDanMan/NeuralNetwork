@@ -1,5 +1,5 @@
 #include "network.h"
-#include "feed-forward.h"
+#include "forward-pass.h"
 #include "dataset.h"
 #include "loss.h"
 

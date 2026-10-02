@@ -25,6 +25,6 @@ void setDatasetXOR(struct dataset* XORDataset) {
     XORDataset -> outputOffset = 1;
     XORDataset -> datasetSize = 4;
     datasetMemoryAllocation(XORDataset);
-    memcpy(XORDataset ->    inputDataset,   (float[]){0,0, 0,1, 1,0, 1,1},4*XORDataset -> inputOffset*sizeof(float));
-    memcpy(XORDataset ->    outputDataset,  (float[]){0, 1, 1, 0}, 4*XORDataset -> outputOffset*sizeof(float));
+    memcpy(XORDataset ->    inputDataset,   (float[]){0,0, 0,1, 1,0, 1,1},XORDataset -> inputOffset*XORDataset->datasetSize*sizeof(float));
+    memcpy(XORDataset ->    outputDataset,  (float[]){0, 1, 1, 0}, XORDataset -> outputOffset*XORDataset->datasetSize*sizeof(float));
 }

@@ -73,7 +73,7 @@ void displayInputVector(struct NeuralNetwork *network);
 
 void copyDatasetInput(struct NeuralNetwork *network, struct dataset *data, unsigned int offset);
 
-
+void zeroInitialisation(float *array, unsigned int arraySize);
 
 
 #endif // UTILS_H
