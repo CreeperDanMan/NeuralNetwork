@@ -27,7 +27,7 @@ float leakyReLU(const float a, const float x) {
 }
 
 float leakyReLUDerivative(const float a, const float x) {
-	return x>=0.0f ? x : a;
+	return x>=0.0f ? 1.0f : a;
 }
 
 float ELu(const float a, const float x) {
@@ -43,5 +43,5 @@ float SiLU(const float x) {
 }
 
 float SiLUDerivative(const float x) {
-	return x*SiLU(x)+sigmoid(x);
+	return sigmoid(x)*(1+x*(1-sigmoid(x)));
 }

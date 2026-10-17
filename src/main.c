@@ -16,7 +16,7 @@ int main() { //int argc, char* argv[]
 	struct dataset data;
 	struct NeuralNetwork network;
 
-	srand(time(NULL));
+	srandom(time(NULL));
 	
 	printf("Le réseau utilisera le dataset XOR intégré\n");
 	setDatasetXOR(&data);

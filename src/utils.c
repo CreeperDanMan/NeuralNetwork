@@ -8,7 +8,7 @@ float* getProbaVector(struct NeuralNetwork *network) {
 
 void setInputVector(struct NeuralNetwork *network, const float *vector) { // à ce point, si l'utilisateur rentre un vecteur de mauvaise taille, c'est qu'il l'a voulu
 	for (unsigned int i = 0; i<network->probaVectorSize; i++) {
-		network -> probaVector[i] = vector[i];
+		network -> inputVector[i] = vector[i];
 	}
 }
 
@@ -17,7 +17,7 @@ unsigned int getParameterNumber(struct NeuralNetwork *network) {
 }
 
 float maximum(const float *vector, const unsigned int vSize, const unsigned int vectorFirstIndex) {
-	if (vSize<=0) {
+	if (vSize==0) {
 		fprintf(stderr, "ERREUR : taille de tableau inférieure ou égale à 0\n");
 		exit(1);
 	}
@@ -88,11 +88,11 @@ void displayInputVector(struct NeuralNetwork *network) {
 
 
 void copyDatasetInput(struct NeuralNetwork *network, struct dataset *data, unsigned int offset) {
-	if (offset>data->datasetSize) {
+	if (offset>=data->datasetSize) {
 		fprintf(stderr, "ERREUR : offset supérieur à la taille du dataset\n");
 		exit(1);
 	}
-	memcpy(network->inputVector, data->inputDataset+data->inputOffset*offset, data->inputOffset);
+	memcpy(network->inputVector, data->inputDataset + data->inputOffset*offset, data->inputOffset*sizeof(float));
 }
 
 

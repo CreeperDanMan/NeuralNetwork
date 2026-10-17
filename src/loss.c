@@ -32,7 +32,7 @@ float lossUnique(struct NeuralNetwork* network, struct dataset* data, unsigned i
     forwardPass(network);
     
     for (unsigned int i = 0; i<data->outputOffset; i++) {
-        lossResult = pow((data->outputDataset[sampleOffset+i]-network->probaVector[i]),2);
+        lossResult += pow((data->outputDataset[sampleOffset+i]-network->probaVector[i]),2);
     }
     
     return lossResult;

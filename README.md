@@ -8,7 +8,7 @@ Ce projet vise à explorer les mécanismes fondamentaux du deep learning (la fon
 
 ## Fonctionnalités du projet
 - **Architecture utilisée :** Perceptron MultiLayer (*MLP*) avec gestion indépendante de la taille et du nombre de couche.
-- **Activation :** Implémentation de plusieurs fonctions d'activations (Sigmoid, ReLU, leakyReLU, SoftPLUS, ELu, SiLU) et possibilité de choisir la fonction d'activation pour chaque couche.
+- **Activation :** Implémentation de plusieurs fonctions d'activations (Sigmoid, ReLU, leakyReLU, SoftPLUS, ELu, SiLU)
 - **Fonction de coût :** Usage de l'erreur moyenne quadratique (MSE).
 
 

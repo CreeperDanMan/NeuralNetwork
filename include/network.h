@@ -13,7 +13,7 @@
 // À ce jour les layers sont définis par des constantes (plus tard par arguments de lancement)
 
 #define HIDDEN_LAYERS 2
-#define HIDDEN_LAYERS_SIZE 32
+#define HIDDEN_LAYERS_SIZE 4
 
 
 /**
