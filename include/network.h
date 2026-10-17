@@ -31,7 +31,7 @@ struct NeuralNetwork {
 	float *biais;  /**< Array à une dimension contenant les biais des neurones */
 	float *weight; /**< Array à une dimension contenant les poids des neurones  */
 	float *output; /**< Array à une dimension contenant la valeur de sortie des neurones */
-	unsigned int *activationFunction; // A INITIALISAER /**< Array à une dimension attribuant une fonction d'activation par Layer */
+	unsigned int *activationFunction; // A INITIALISER /**< Array à une dimension attribuant une fonction d'activation par Layer */
 
 	unsigned int    numLayers; /**< Variable contenant le nombre de layer du réseau */
 	unsigned int   *layerSize; /**< Array à une dimension contenant la taille de chaque layer, permettant des tailles indépendantes par layer */
