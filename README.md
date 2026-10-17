@@ -33,6 +33,13 @@ make rebuild
 
 ```
 
+## État du projet — en cours
+
+**Fonctionnel :** forward pass, dataset XOR, fonction de coût MSE, 6 activations.  
+**En cours :** pré-activations et dispatch par couche.  
+**Prévu :** backpropagation (validation par gradient check), entraînement full-batch,
+initialisation gaussienne Xavier/He, chargement de dataset, sauvegarde du réseau.  
+
 ## Licence
 
 Ce projet est sous licence [MIT](LICENSE).
