@@ -34,12 +34,14 @@ void neuralNetworkInitialisation (struct NeuralNetwork *network, unsigned int in
 void networkMemoryInitialisation(struct NeuralNetwork *network, unsigned int inputLayerSize, unsigned int outputLayerSize) {
 	// ALLOCATION DE LA MEMOIRE
 
-	network -> layerSize 	 = malloc(network -> numLayers*sizeof(int)); // Tableaux d'entiers
-	network -> nbWeightPerLayer = malloc(network -> numLayers*sizeof(int));
+	network -> layerSize 	 = malloc(network -> numLayers*sizeof(unsigned int)); // Tableaux d'entiers
+	network -> nbWeightPerLayer = malloc(network -> numLayers*sizeof(unsigned int));
 	network -> biais 		 = malloc(network -> numberOfNeurons*sizeof(float)); // Tableaux de float
 	network -> output		 = malloc(network -> numberOfNeurons*sizeof(float));
+	network -> preaActivation = malloc(network -> numberOfNeurons*sizeof(float));
 
-	network -> layerOffset = malloc(network -> numLayers*sizeof(int));
+	network -> layerOffset = malloc(network -> numLayers*sizeof(unsigned int));
+	network -> activationFunction = malloc((network->numLayers-1)*sizeof(unsigned int));
 
 
 	if (network -> layerSize==NULL || network -> biais == NULL ||
@@ -82,7 +84,7 @@ void networkMemoryInitialisation(struct NeuralNetwork *network, unsigned int inp
 	network -> numberOfWeight += network -> nbWeightPerLayer[network -> numLayers-1];
 
     network -> weight = malloc(network -> numberOfWeight*sizeof(float));
-	network -> weightOffset = malloc(network -> numberOfNeurons*sizeof(int));
+	network -> weightOffset = malloc(network -> numberOfNeurons*sizeof(unsigned int));
 
 	if (network -> weight == NULL || network -> weightOffset == NULL || network -> probaVector == NULL) {
 		fprintf(stderr, "ERREUR D'ALLOCATION, POINTEUR NULL RETOURNE");
@@ -96,12 +98,14 @@ void freeNetworkAllocation(struct NeuralNetwork *network) {
 	free(network -> layerSize);
 	free(network -> biais);
 	free(network -> output);
+	free(network->preaActivation);
 	free(network -> layerOffset);
 	free(network -> inputVector);
 	free(network -> probaVector);
 	free(network -> weight);
 	free(network -> weightOffset);
 	free(network -> nbWeightPerLayer);
+	free(network -> activationFunction);
 }
 
 

@@ -14,7 +14,8 @@ void neuronActivity(struct NeuralNetwork *network, const unsigned int layerNumbe
 	for (unsigned int k = 0; k<network -> layerSize[layerNumber-1]; k++) {
 		network ->output[neuronNumber] += (network -> output[network -> layerOffset[layerNumber - 1]+k]) * (network -> weight[network -> weightOffset[neuronNumber]+k]); 
 	}
-	network -> output[neuronNumber] = sigmoid(network -> output[neuronNumber] + network->biais[neuronNumber]);
+	network -> preaActivation[neuronNumber] = network -> output[neuronNumber] + network->biais[neuronNumber];
+	network -> output[neuronNumber] = sigmoid(network -> preaActivation[neuronNumber]);
 
 }
 
