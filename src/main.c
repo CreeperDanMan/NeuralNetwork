@@ -1,5 +1,4 @@
 #include "network.h"
-#include "forward-pass.h"
 #include "dataset.h"
 #include "loss.h"
 
@@ -9,7 +8,7 @@
 */
 
 
-int main() { //int argc, char* argv[]
+int main() {
 
 	// INITIALISATION DES VARIABLES
 

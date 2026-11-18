@@ -6,7 +6,7 @@
 
 // Ajouter LayerSize
 void initFromDataset(struct NeuralNetwork *network, struct dataset *data) {
-	neuralNetworkInitialisation(network, data->inputOffset, data->outputOffset);
+	neuralNetworkInitialisation(network, data->inputStride, data->outputStride);
 }
 
 void neuralNetworkInitialisation (struct NeuralNetwork *network, unsigned int inputLayerSize, unsigned int outputLayerSize) {

@@ -23,7 +23,7 @@ void neuronActivity(struct NeuralNetwork *network, const unsigned int layerNumbe
 
 void forwardPass(struct NeuralNetwork *network){
 
-		// Envoi des données d'entrées au réseau
+	// Envoi des données d'entrées au réseau
 	for (unsigned int i = 0; i<network -> layerSize[0]; i++) {
 		network -> output[i] = network -> inputVector[i];
 	}

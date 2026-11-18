@@ -92,7 +92,7 @@ void copyDatasetInput(struct NeuralNetwork *network, struct dataset *data, unsig
 		fprintf(stderr, "ERREUR : offset supérieur à la taille du dataset\n");
 		exit(1);
 	}
-	memcpy(network->inputVector, data->inputDataset + data->inputOffset*offset, data->inputOffset*sizeof(float));
+	memcpy(network->inputVector, data->inputDataset + data->inputStride*offset, data->inputStride*sizeof(float));
 }
 
 

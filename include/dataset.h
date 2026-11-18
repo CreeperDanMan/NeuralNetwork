@@ -7,7 +7,7 @@
  * @struct dataset
  * @brief Représente le jeu de données utilisé pour entrainer le MLP contenant une paire d'entrées / sorties
  * 
- * Cette structure stocke des vecteurs plats d'entrées et sorties et gère les décalages (Offset) nécessaires pour accéder à chaque échantillon.
+ * Cette structure stocke des vecteurs plats d'entrées et sorties et gère les strides (espacements) nécessaires pour accéder à chaque échantillon.
  * Les entrées et sorties du réseau seront adaptés automatiquement à la taille du dataset utilisé.
  */
 
@@ -17,8 +17,8 @@ struct dataset {
 
     unsigned int datasetSize; /**< Variable contenant la taille du dataset */
 
-    unsigned int inputOffset; /**< Variable contenant l'offset des entrées du dataset (taille des entrées) */
-    unsigned int outputOffset; /**< Variable contenant l'offset des sorties du dataset (taille des sorties) */
+    unsigned int inputStride; /**< Variable contenant le stride des entrées du dataset (taille des entrées) */
+    unsigned int outputStride; /**< Variable contenant le stride des sorties du dataset (taille des sorties) */
 };
 
 /**
