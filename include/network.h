@@ -10,10 +10,11 @@
 #include <stdbool.h>
 
 
-// À ce jour les layers sont définis par des constantes (plus tard par arguments de lancement)
+// Les nombres magiques ici présents seront retirés à la suite du développement
 
 #define HIDDEN_LAYERS 2
 #define HIDDEN_LAYERS_SIZE 4
+#define SOFTMAX false
 
 
 /**
@@ -27,6 +28,8 @@
  */
 
 struct NeuralNetwork {
+
+	bool USE_SOFTMAX;
 
 	float *biais;  /**< Array à une dimension contenant les biais des neurones */
 	float *weight; /**< Array à une dimension contenant les poids des neurones  */

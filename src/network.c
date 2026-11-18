@@ -10,6 +10,9 @@ void initFromDataset(struct NeuralNetwork *network, struct dataset *data) {
 }
 
 void neuralNetworkInitialisation (struct NeuralNetwork *network, unsigned int inputLayerSize, unsigned int outputLayerSize) {
+
+	network -> USE_SOFTMAX = SOFTMAX;
+
 	network -> numLayers = 2+HIDDEN_LAYERS;
 
 	network -> numberOfNeurons = inputLayerSize+outputLayerSize+(HIDDEN_LAYERS*HIDDEN_LAYERS_SIZE);

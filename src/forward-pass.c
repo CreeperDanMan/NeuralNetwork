@@ -40,7 +40,7 @@ void forwardPass(struct NeuralNetwork *network){
 		}
 	}
 
-	if (network->probaVectorSize>1) {
+	if (network -> USE_SOFTMAX) {
 		// Envoi du résultat de la Forward Pass dans l'array de probabilités
 		softmaxVector(network->output, 
 			network->probaVector, 
@@ -50,6 +50,6 @@ void forwardPass(struct NeuralNetwork *network){
 		);
 	}
 	else {
-		network->probaVector[0] = network->output[network->numberOfNeurons-1];
+		memcpy(network->probaVector, network->output+network->layerOffset[network -> numLayers-1], network->probaVectorSize*sizeof(float));
 	}
 }
